@@ -1,0 +1,97 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+// Class name should be "Source",
+// otherwise solution won't be accepted
+public class Source {
+    static void printShape(Shape shape){
+        System.out.println("Area:"+ Math.round(shape.getArea()) + ",Perimeter:"+ Math.round(shape.getPerimeter()));
+    }
+    
+	public static void main(String args[] ) throws Exception {
+		
+		Scanner scan= new Scanner(System.in);
+		String str= scan.next();
+		Shape shape;
+		if(str.equals("CIRCLE"))
+		{
+		  String colour = scan.next();
+		  int radius = scan.nextInt();
+		  shape = new Circle(colour, radius);
+		  System.out.println(shape.toString());
+		  printShape(shape);
+		}else if(str.equals("RECTANGLE")){
+		  String colour = scan.next();
+		  int length = scan.nextInt();
+		  int breadth = scan.nextInt();
+		  shape = new Rectangle(colour, length,breadth);
+		  System.out.println(shape.toString());
+		printShape(shape);
+		}
+		
+
+	}
+}
+
+ interface Shape{
+   double  getArea();
+   double getPerimeter();
+}
+
+abstract class AbstractShape implements Shape{
+    private String colour;
+    AbstractShape(String colour){
+        this.colour = colour;
+    }
+    String getColour(){
+        return this.colour;
+    }
+    public String toString(){
+        return ("colour = " + this.colour);
+    }
+    // public abstract double getArea();
+    // public abstract double getPerimeter();
+}
+
+class Rectangle extends AbstractShape{
+    private int length;
+    private int breadth;
+    Rectangle(String colour, int length, int breadth){
+        super(colour);
+        this.length =length;
+        this.breadth = breadth;
+    }
+    
+    public double getArea(){
+        return this.length * this.breadth;
+    }
+    
+    public double getPerimeter(){
+        return 2*(this.length + this.breadth);
+    }
+    
+    public String toString(){
+        return ("Rectangle [colour="+super.getColour() + ", length=" + this.length +", breadth="+ this.breadth + "]");
+    }
+}
+
+class Circle extends AbstractShape{
+    private int radius;
+    Circle(String colour,int radius){
+        super(colour);
+        this.radius= radius;
+    }
+    public   double getArea(){
+        return Math.PI*this.radius * this.radius;
+    }
+    
+   public  double getPerimeter(){
+        return 2*(Math.PI)*this.radius;
+    }
+    public String toString(){
+        return("Circle [colour="+super.getColour()+", radius="+this.radius+"]");
+    }
+}
