@@ -1,0 +1,35 @@
+import java.util.*;
+public class Source {
+	public static void main(String args[] ) throws Exception 
+	{
+	   Scanner scan= new Scanner(System.in);
+	   int n = scan.nextInt();
+	   //int count=0;
+	   if (n<=0)
+	   {System.out.println("INVALID INPUT"); return;}
+	   String[] str = new String[n];
+	   ArrayList<String> list = new ArrayList<>();
+	
+	   for(int i=0;i<n;i++)
+	   {
+	       str[i]=scan.next();
+	       if (str[i].contains("HR"))
+	       {
+	           list.add(str[i]);
+
+	       }
+	   }
+	   if (list.size()==0)
+	  System.out.println("No designation of HR department found in given data");
+	  else
+	  { 
+	   System.out.println("Total "+list.size()+" designations in HR Department");
+	   for(int i=0;i<list.size();i++)
+	   {
+	       System.out.println(list.get(i).toUpperCase());
+	  }
+	      
+	  }
+	 
+	}
+}
